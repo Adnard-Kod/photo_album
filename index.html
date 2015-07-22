@@ -7,17 +7,23 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <header>
+    <h1>Your Album</h1>
+    <p>Add urls to images you would like to save...</p>
+  </header>
   <div id="container">
-    <header><img src=""></header>
 
+  <article id="sidebar">
     <form>
       <input id="photoItemImg" type="text" placeholder="url" name="img" autofocus>
       <input id="photoItemTitle" type="text" placeholder="title" name="title">
       <input id="addPhoto" type="submit" value= "Add Photo Url">
     </form>
+  </article>
     <ul id="theList" class="sortable list">
       
     </ul>
+    <div class="clear-fix"></div>
 
     <p id="doClearAll">
       <a id="clearAll" href="#">Clear All</a>
@@ -32,8 +38,8 @@
 <script id="photo-temp" type="text/x-handlebars-template">
   {{#if img}}
     <li class="entry">
-      <p>{{title}}</p>
       <img src={{img}}>
+      <p>{{title}}</p>
     </li>
    {{/if}}
 </script>

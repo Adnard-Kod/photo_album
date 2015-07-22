@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded",function(){
   
   function Album() {
-    this.newPhotoItem = null;
-    this.newPhotoList = true;
     this.photosList = $('#theList');
     this.albumList = 'albumList';
     this.form = $('form');
@@ -18,8 +16,10 @@ document.addEventListener("DOMContentLoaded",function(){
     loadAlbum: function() {
       var list = localStorage.getItem(this.albumList)
       if(list) {
+        this.photosList.html('')
+         this.photosList.append(list)
         var photoUrl = $('#photoItem')
-      }
+      } 
     }, 
     bindEvents: function() {
       this.form.on('submit', function(e) {
@@ -30,6 +30,15 @@ document.addEventListener("DOMContentLoaded",function(){
         this.clearAll(e);
       }.bind(this))
     },
+    save: function() {
+      var savedPhotos = localStorage.setItem(this.albumList, theList.innerHTML);
+
+    },
+    clearAll: function(e) {
+      e.preventDefault();
+      localStorage.clear()
+      location.reload();
+    },
     addPhoto: function(e) {
       e.preventDefault();
       var img = $('form #photoItemImg').val()
@@ -38,20 +47,12 @@ document.addEventListener("DOMContentLoaded",function(){
       var photo = this.buildPhoto(photo)
       this.photosList.append(photo)
       this.resetForm()
+      this.save()
     },
     buildPhoto: function(val) {
       var source = this.photoTmp
       var template = Handlebars.compile(source)
       return template(val);
-    },
-    save: function(e) {
-      e.preventDefault();
-      localStorage.setItem(this.albumList, theList.innerHTML);
-    },
-    clearAll: function(e) {
-      e.preventDefault();
-      localStorage.clear()
-      location.reload();
     },
     resetForm: function() {
       $('form')[0].reset()
