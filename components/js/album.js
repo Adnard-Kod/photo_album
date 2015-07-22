@@ -6,12 +6,14 @@ document.addEventListener("DOMContentLoaded",function(){
     this.form = $('form');
     this.clearAllBtn = $('#clearAll');
     this.photoTmp = $('#photo-temp').html();
+    this.deleteBtn = $('.deleteBtn')
   }
 
   Album.prototype = {
     init: function() {
       this.bindEvents();
       this.loadAlbum();
+      // this.sortPhotos();
     },
     loadAlbum: function() {
       var list = localStorage.getItem(this.albumList)
@@ -19,8 +21,8 @@ document.addEventListener("DOMContentLoaded",function(){
         this.photosList.html('')
          this.photosList.append(list)
         var photoUrl = $('#photoItem')
-      } 
-    }, 
+      }
+    },
     bindEvents: function() {
       this.form.on('submit', function(e) {
         this.addPhoto(e)
@@ -29,10 +31,27 @@ document.addEventListener("DOMContentLoaded",function(){
       this.clearAllBtn.on('click', function(e) {
         this.clearAll(e);
       }.bind(this))
-    },
-    save: function() {
-      var savedPhotos = localStorage.setItem(this.albumList, theList.innerHTML);
 
+      this.photosList.delegate('li', 'mouseover', function (e) {
+        var btn = $(e.target).find('span')
+        btn.show()
+        this.hideDeleteBtn(btn)
+      }.bind(this))
+
+      this.photosList.delegate(this.deleteBtn, 'click', function(e) {
+        e.preventDefault();
+        $(e.target).closest('li').remove();
+        this.saveList()
+      }.bind(this))
+
+    },
+    hideDeleteBtn: function(btn) {
+      this.photosList.delegate('li', 'mouseout', function(e) {
+        btn.hide()
+      }.bind(this))
+    },
+    saveList: function() {
+      var savedPhotos = localStorage.setItem(this.albumList, theList.innerHTML);
     },
     clearAll: function(e) {
       e.preventDefault();
@@ -47,7 +66,7 @@ document.addEventListener("DOMContentLoaded",function(){
       var photo = this.buildPhoto(photo)
       this.photosList.append(photo)
       this.resetForm()
-      this.save()
+      this.saveList()
     },
     buildPhoto: function(val) {
       var source = this.photoTmp
@@ -57,10 +76,12 @@ document.addEventListener("DOMContentLoaded",function(){
     resetForm: function() {
       $('form')[0].reset()
       $('#photoItem').focus()
-      $('.sortable').sortable('destroy')
-      $('.sortable').sortable({
-        handle: '.handle'
-      });
+    },
+    sortPhotos: function() {
+      // come-back and do this
+    },
+    delete: function() {
+      
     }
   };
 
