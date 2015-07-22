@@ -5,6 +5,10 @@ $(document).ready(function(){
   }
 
   Sort.prototype = {
+    init: function(){
+      this.sortPhotos();
+      this.bindEvents();
+    },
     bindEvents: function(){
       this.sort.on('click', function(e) {
         this.toggleSort()
@@ -12,7 +16,6 @@ $(document).ready(function(){
 
       this.images.delegate('img', 'click', function(e) {
         if($('#sort').attr('class') != 'active') return;
-        this.sortPhotos()
       }.bind(this))
     },
     sortPhotos: function() {
@@ -23,18 +26,27 @@ $(document).ready(function(){
       })
       this.saveSort();
     },
+    sortDisable: function() {
+      this.images.sortable( "disable" )
+    },
+    sortEnable: function() {
+      this.images.sortable( "enable" )
+    },
     toggleSort: function () {
       $('#theList li').show()
       if( this.sort.attr('class') === 'active'){
         this.sort.removeClass('active')
+        this.sortDisable()
+
       } else {
         this.sort.addClass('active')
+        this.sortEnable()
       }
     },
-      saveSort: function(){
+    saveSort: function(){
 
-      }
+    }
   };
   var newSort = new Sort;
-   newSort.bindEvents();
+   newSort.init();
 })

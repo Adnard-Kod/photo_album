@@ -5,8 +5,17 @@ body {
 }
 
 .active {
-  background-color: purple;
-  height: 100px;
+  outline: 10px solid #411873;
+  text-transform: uppercase;
+}
+
+#sort {
+  background-color: #FF1780;
+  color: white;
+  padding: 15px;
+  width:10%;
+  font-size: 1.2em;
+  float: right;
 }
 
 #container {
@@ -22,6 +31,7 @@ body {
   float: right;
   margin-top: 25px;
   padding: 2%;
+  color: white;
   width: 27.777777777%;
 }
 
