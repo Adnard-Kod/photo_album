@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  function Model() {
+  function Modal() {
     this.images = $('#theList')
     this.overlay = $("#overlay")
     this.overlayImage = $('#overlayImage')
 
   }
 
-  Model.prototype = {
+  Modal.prototype = {
     bindEvents: function() {
       this.images.delegate('img', 'click', function(e) {
+        if($('#sort').attr('class') === 'active') return;
         this.createOverLay(e);
       }.bind(this))
 
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
-  var newModel = new Model;
-   newModel.bindEvents();
+  var newModal = new Modal;
+   newModal.bindEvents();
 
 })

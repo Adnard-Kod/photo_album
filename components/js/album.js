@@ -41,11 +41,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
       this.photosList.delegate(this.deleteBtn, 'click', function(e) {
         e.preventDefault();
-        if( $(e.target).is('p')) {
-          $(e.target).closest('li').remove();
-          this.saveList()
-        }
-
+        this.deletePhoto(e)
       }.bind(this))
 
     },
@@ -94,8 +90,11 @@ document.addEventListener("DOMContentLoaded",function(){
     sortPhotos: function() {
       // come-back and do this
     },
-    delete: function() {
-      
+    deletePhoto: function(e) {
+      if( $(e.target).is('p')) {
+        $(e.target).closest('li').remove();
+        this.saveList()
+      }
     }
   };
 
