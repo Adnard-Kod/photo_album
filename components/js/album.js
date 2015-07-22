@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded",function(){
   function Album() {
     this.photosList = $('#theList');
     this.albumList = 'albumList';
-    this.form = $('form');
+    this.form = $('#AddPhotoForm');
     this.clearAllBtn = $('#clearAll');
     this.photoTmp = $('#photo-temp').html();
     this.deleteBtn = $('.deleteBtn')

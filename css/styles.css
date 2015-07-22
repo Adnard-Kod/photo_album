@@ -10,14 +10,14 @@ body {
   margin-right: auto;
 }
 
-#sidebar {
-  border: 2px solid black;
-  width: 30%;
-  float: right;
+.sidebar {
   background-color: #FF1780;
-  height: 300px;
   border-radius: 10px;
+  clear: right; 
+  float: right;
   margin-top: 25px;
+  padding: 2%;
+  width: 27.777777777%;
 }
 
 header {
@@ -59,26 +59,22 @@ h1 {
 }
 
 ul {
+  width: 63.33333%;
   margin: 0;
   padding: 0;
   list-style-type: none;
-}
-
-ul {
   margin-top: 50px;
 }
 
 ul li {
   display: inline-block;
-  margin-left: 2%;
-  width: 25%;
-  margin-bottom: 20px;
-  border: 2px solid black;
-  padding: 25px;
+  margin: 1.754385964%;
+  width: 40.350877193%;
+  outline: 2px solid black;
+  padding: 2.571428571%
 }
 
 .img-box {
-  outline: 2px solid pink;
   height: 150px;
   overflow: hidden;
 }
@@ -103,6 +99,7 @@ p {
   text-align: center;
   background-color: white;
   border-radius: 5px;
+  padding: 2%;
  }
 
  p a {
