@@ -18,6 +18,11 @@ body {
   float: right;
 }
 
+.sortSave {
+  display: none;
+  margin-right: 20px;
+}
+
 #container {
   width: 90%;
   margin-left: auto;

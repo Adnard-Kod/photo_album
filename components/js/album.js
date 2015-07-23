@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded",function(){
     init: function() {
       this.bindEvents();
       this.loadAlbum();
-      // this.sortPhotos();
     },
     loadAlbum: function() {
       var list = localStorage.getItem(this.albumList)

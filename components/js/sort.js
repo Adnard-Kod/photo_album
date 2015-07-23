@@ -1,7 +1,9 @@
 $(document).ready(function(){
   function Sort() {
-    this.images = $('#theList')
-    this.sort= $('#sort')
+    this.images = $('#theList');
+    this.sort= $('#sort');
+    this.sortSave = $('.sortSave');
+    this.albumList = 'albumList';
   }
 
   Sort.prototype = {
@@ -11,11 +13,15 @@ $(document).ready(function(){
     },
     bindEvents: function(){
       this.sort.on('click', function(e) {
-        this.toggleSort()
+        this.toggleSort();
       }.bind(this))
 
       this.images.delegate('img', 'click', function(e) {
         if($('#sort').attr('class') != 'active') return;
+      }.bind(this))
+
+      this.sortSave.on('click', function(e) {
+        this.saveSort();
       }.bind(this))
     },
     sortPhotos: function() {
@@ -24,27 +30,28 @@ $(document).ready(function(){
         revert: true,
         opacity: 0.6,
       })
-      this.saveSort();
     },
     sortDisable: function() {
-      this.images.sortable( "disable" )
+      this.images.sortable( "disable" );
     },
     sortEnable: function() {
-      this.images.sortable( "enable" )
+      this.images.sortable( "enable" );
     },
     toggleSort: function () {
       $('#theList li').show()
       if( this.sort.attr('class') === 'active'){
-        this.sort.removeClass('active')
-        this.sortDisable()
-
+        this.sort.removeClass('active');
+        this.sortSave.hide();
+        this.sortDisable();
       } else {
-        this.sort.addClass('active')
-        this.sortEnable()
+        this.sortSave.show();
+        this.sort.addClass('active');
+        this.sortEnable();
       }
     },
     saveSort: function(){
-
+      localStorage.clear();
+      localStorage.setItem(this.albumList, theList.innerHTML);
     }
   };
   var newSort = new Sort;
